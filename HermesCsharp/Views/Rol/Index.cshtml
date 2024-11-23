@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HermesCsharp.Models.DTO.Rol>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idRol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreRol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoRol)
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idRol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreRol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estadoRol)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idRol }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idRol }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idRol })
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,1339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hermesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreActividad" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categoriaServicio">
+          <Key>
+            <PropertyRef Name="idCategoriaServicio" />
+          </Key>
+          <Property Name="idCategoriaServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCategoriaServicio" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="numeroContacto" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="idMunicipio" Type="int" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="tipoDeSangre" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="eps" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="estadoCliente" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoDepartamento" Type="int" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detallePaqueteServicio">
+          <Key>
+            <PropertyRef Name="idDetallePaqueteServicio" />
+          </Key>
+          <Property Name="idDetallePaqueteServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPaquete" Type="int" Nullable="false" />
+          <Property Name="idServicio" Type="int" Nullable="false" />
+          <Property Name="cantidadServicioPaquete" Type="int" Nullable="false" />
+          <Property Name="valorServicioPaquete" Type="decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="detalleReservaViajero">
+          <Key>
+            <PropertyRef Name="idDetalleReservaViajero" />
+          </Key>
+          <Property Name="idDetalleReservaViajero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="municipio">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoMunicipio" Type="int" Nullable="false" />
+          <Property Name="nombreMunicipio" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idDepartamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="idPago" />
+          </Key>
+          <Property Name="idPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="fechaPago" Type="date" />
+          <Property Name="valorPago" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="comprobante" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="estadoPago" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoPais" Type="int" Nullable="false" />
+          <Property Name="nombrePais" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paquete">
+          <Key>
+            <PropertyRef Name="idPaquete" />
+          </Key>
+          <Property Name="idPaquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrePaquete" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idMunicipio" Type="int" Nullable="false" />
+          <Property Name="idActividad" Type="int" Nullable="false" />
+          <Property Name="nivelActividad" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="inversionPaquete" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="reservaPaquete" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrePermiso" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="estadoPermiso" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="privilegio">
+          <Key>
+            <PropertyRef Name="idPrivilegio" />
+          </Key>
+          <Property Name="idPrivilegio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrePrivilegio" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idPermiso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="programacion">
+          <Key>
+            <PropertyRef Name="idProgramacion" />
+          </Key>
+          <Property Name="idProgramacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaInicioInscripcion" Type="date" Nullable="false" />
+          <Property Name="fechaFinInscripcion" Type="date" Nullable="false" />
+          <Property Name="fechaEjecucion" Type="date" Nullable="false" />
+          <Property Name="fechaFinalizacion" Type="date" Nullable="false" />
+          <Property Name="horaInicioRecogida" Type="time" Precision="7" Nullable="false" />
+          <Property Name="horaFinRecogida" Type="time" Precision="7" Nullable="false" />
+          <Property Name="idPaquete" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProgramacion" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="fechaReserva" Type="date" />
+          <Property Name="valorReserva" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="estadoReserva" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreRol" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="estadoRol" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rolPrivilegio">
+          <Key>
+            <PropertyRef Name="idRolPrivilegio" />
+          </Key>
+          <Property Name="idRolPrivilegio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="idPrivilegio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="idServicio" />
+          </Key>
+          <Property Name="idServicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategoriaServicio" Type="int" Nullable="false" />
+          <Property Name="nombreServicio" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="valorServicio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="estadoServicio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="tipoDocumento" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="contrasenha" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="estadoUsuario" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_categoryService">
+          <End Role="categoriaServicio" Type="Self.categoriaServicio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoriaServicio">
+              <PropertyRef Name="idCategoriaServicio" />
+            </Principal>
+            <Dependent Role="servicio">
+              <PropertyRef Name="idCategoriaServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idActividadPaquete">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paquete" Type="Self.paquete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="idActividad" />
+            </Principal>
+            <Dependent Role="paquete">
+              <PropertyRef Name="idActividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCliente">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idClienteReservaViajero">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="detalleReservaViajero" Type="Self.detalleReservaViajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="detalleReservaViajero">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idDepartamento">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="municipio" Type="Self.municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="municipio">
+              <PropertyRef Name="idDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMunicipio">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMunicipioPaquete">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paquete" Type="Self.paquete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="paquete">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPackage">
+          <End Role="paquete" Type="Self.paquete" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detallePaqueteServicio" Type="Self.detallePaqueteServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idPaquete" />
+            </Principal>
+            <Dependent Role="detallePaqueteServicio">
+              <PropertyRef Name="idPaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPais">
+          <End Role="pais" Type="Self.pais" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="departamento" Type="Self.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPaquete">
+          <End Role="paquete" Type="Self.paquete" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="programacion" Type="Self.programacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idPaquete" />
+            </Principal>
+            <Dependent Role="programacion">
+              <PropertyRef Name="idPaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPermiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="privilegio" Type="Self.privilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="idPermiso" />
+            </Principal>
+            <Dependent Role="privilegio">
+              <PropertyRef Name="idPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPrivilegio">
+          <End Role="privilegio" Type="Self.privilegio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rolPrivilegio" Type="Self.rolPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="privilegio">
+              <PropertyRef Name="idPrivilegio" />
+            </Principal>
+            <Dependent Role="rolPrivilegio">
+              <PropertyRef Name="idPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idProgramacion">
+          <End Role="programacion" Type="Self.programacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programacion">
+              <PropertyRef Name="idProgramacion" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idProgramacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idReserva">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleReservaViajero" Type="Self.detalleReservaViajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="detalleReservaViajero">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rolPrivilegio" Type="Self.rolPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="rolPrivilegio">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRolUsuario">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idService">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detallePaqueteServicio" Type="Self.detallePaqueteServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="idServicio" />
+            </Principal>
+            <Dependent Role="detallePaqueteServicio">
+              <PropertyRef Name="idServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUsuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reservation">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pago" Type="Self.pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hermesModelStoreContainer">
+          <EntitySet Name="actividad" EntityType="Self.actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categoriaServicio" EntityType="Self.categoriaServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departamento" EntityType="Self.departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detallePaqueteServicio" EntityType="Self.detallePaqueteServicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalleReservaViajero" EntityType="Self.detalleReservaViajero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="municipio" EntityType="Self.municipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago" EntityType="Self.pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paquete" EntityType="Self.paquete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="privilegio" EntityType="Self.privilegio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programacion" EntityType="Self.programacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rolPrivilegio" EntityType="Self.rolPrivilegio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_categoryService" Association="Self.FK_categoryService">
+            <End Role="categoriaServicio" EntitySet="categoriaServicio" />
+            <End Role="servicio" EntitySet="servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idActividadPaquete" Association="Self.FK_idActividadPaquete">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="paquete" EntitySet="paquete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCliente" Association="Self.FK_idCliente">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idClienteReservaViajero" Association="Self.FK_idClienteReservaViajero">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="detalleReservaViajero" EntitySet="detalleReservaViajero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idDepartamento" Association="Self.FK_idDepartamento">
+            <End Role="departamento" EntitySet="departamento" />
+            <End Role="municipio" EntitySet="municipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMunicipio" Association="Self.FK_idMunicipio">
+            <End Role="municipio" EntitySet="municipio" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMunicipioPaquete" Association="Self.FK_idMunicipioPaquete">
+            <End Role="municipio" EntitySet="municipio" />
+            <End Role="paquete" EntitySet="paquete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPackage" Association="Self.FK_idPackage">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="detallePaqueteServicio" EntitySet="detallePaqueteServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPais" Association="Self.FK_idPais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="departamento" EntitySet="departamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPaquete" Association="Self.FK_idPaquete">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="programacion" EntitySet="programacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPermiso" Association="Self.FK_idPermiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="privilegio" EntitySet="privilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPrivilegio" Association="Self.FK_idPrivilegio">
+            <End Role="privilegio" EntitySet="privilegio" />
+            <End Role="rolPrivilegio" EntitySet="rolPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idProgramacion" Association="Self.FK_idProgramacion">
+            <End Role="programacion" EntitySet="programacion" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idReserva" Association="Self.FK_idReserva">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="detalleReservaViajero" EntitySet="detalleReservaViajero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRol" Association="Self.FK_idRol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="rolPrivilegio" EntitySet="rolPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRolUsuario" Association="Self.FK_idRolUsuario">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idService" Association="Self.FK_idService">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="detallePaqueteServicio" EntitySet="detallePaqueteServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUsuario" Association="Self.FK_idUsuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reservation" Association="Self.FK_reservation">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hermesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="idActividad" />
+          </Key>
+          <Property Name="idActividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreActividad" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="paquete" Relationship="Self.FK_idActividadPaquete" FromRole="actividad" ToRole="paquete" />
+        </EntityType>
+        <EntityType Name="categoriaServicio">
+          <Key>
+            <PropertyRef Name="idCategoriaServicio" />
+          </Key>
+          <Property Name="idCategoriaServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCategoriaServicio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="servicio" Relationship="Self.FK_categoryService" FromRole="categoriaServicio" ToRole="servicio" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="numeroContacto" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tipoDeSangre" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eps" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoCliente" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="reserva" Relationship="Self.FK_idCliente" FromRole="cliente" ToRole="reserva" />
+          <NavigationProperty Name="detalleReservaViajero" Relationship="Self.FK_idClienteReservaViajero" FromRole="cliente" ToRole="detalleReservaViajero" />
+          <NavigationProperty Name="municipio" Relationship="Self.FK_idMunicipio" FromRole="cliente" ToRole="municipio" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_idUsuario" FromRole="cliente" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="municipio" Relationship="Self.FK_idDepartamento" FromRole="departamento" ToRole="municipio" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_idPais" FromRole="departamento" ToRole="pais" />
+        </EntityType>
+        <EntityType Name="detallePaqueteServicio">
+          <Key>
+            <PropertyRef Name="idDetallePaqueteServicio" />
+          </Key>
+          <Property Name="idDetallePaqueteServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPaquete" Type="Int32" Nullable="false" />
+          <Property Name="idServicio" Type="Int32" Nullable="false" />
+          <Property Name="cantidadServicioPaquete" Type="Int32" Nullable="false" />
+          <Property Name="valorServicioPaquete" Type="Decimal" Precision="15" Scale="2" />
+          <NavigationProperty Name="paquete" Relationship="Self.FK_idPackage" FromRole="detallePaqueteServicio" ToRole="paquete" />
+          <NavigationProperty Name="servicio" Relationship="Self.FK_idService" FromRole="detallePaqueteServicio" ToRole="servicio" />
+        </EntityType>
+        <EntityType Name="detalleReservaViajero">
+          <Key>
+            <PropertyRef Name="idDetalleReservaViajero" />
+          </Key>
+          <Property Name="idDetalleReservaViajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idReserva" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK_idClienteReservaViajero" FromRole="detalleReservaViajero" ToRole="cliente" />
+          <NavigationProperty Name="reserva" Relationship="Self.FK_idReserva" FromRole="detalleReservaViajero" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="municipio">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="nombreMunicipio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDepartamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK_idMunicipio" FromRole="municipio" ToRole="cliente" />
+          <NavigationProperty Name="departamento" Relationship="Self.FK_idDepartamento" FromRole="municipio" ToRole="departamento" />
+          <NavigationProperty Name="paquete" Relationship="Self.FK_idMunicipioPaquete" FromRole="municipio" ToRole="paquete" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="idPago" />
+          </Key>
+          <Property Name="idPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idReserva" Type="Int32" Nullable="false" />
+          <Property Name="fechaPago" Type="DateTime" Precision="0" />
+          <Property Name="valorPago" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="comprobante" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoPago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="reserva" Relationship="Self.FK_reservation" FromRole="pago" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoPais" Type="Int32" Nullable="false" />
+          <Property Name="nombrePais" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="departamento" Relationship="Self.FK_idPais" FromRole="pais" ToRole="departamento" />
+        </EntityType>
+        <EntityType Name="paquete">
+          <Key>
+            <PropertyRef Name="idPaquete" />
+          </Key>
+          <Property Name="idPaquete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrePaquete" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="idActividad" Type="Int32" Nullable="false" />
+          <Property Name="nivelActividad" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="inversionPaquete" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="reservaPaquete" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <NavigationProperty Name="actividad" Relationship="Self.FK_idActividadPaquete" FromRole="paquete" ToRole="actividad" />
+          <NavigationProperty Name="detallePaqueteServicio" Relationship="Self.FK_idPackage" FromRole="paquete" ToRole="detallePaqueteServicio" />
+          <NavigationProperty Name="municipio" Relationship="Self.FK_idMunicipioPaquete" FromRole="paquete" ToRole="municipio" />
+          <NavigationProperty Name="programacion" Relationship="Self.FK_idPaquete" FromRole="paquete" ToRole="programacion" />
+        </EntityType>
+        <EntityType Name="permiso">
+          <Key>
+            <PropertyRef Name="idPermiso" />
+          </Key>
+          <Property Name="idPermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrePermiso" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoPermiso" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="privilegio" Relationship="Self.FK_idPermiso" FromRole="permiso" ToRole="privilegio" />
+        </EntityType>
+        <EntityType Name="privilegio">
+          <Key>
+            <PropertyRef Name="idPrivilegio" />
+          </Key>
+          <Property Name="idPrivilegio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrePrivilegio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idPermiso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="permiso" Relationship="Self.FK_idPermiso" FromRole="privilegio" ToRole="permiso" />
+          <NavigationProperty Name="rolPrivilegio" Relationship="Self.FK_idPrivilegio" FromRole="privilegio" ToRole="rolPrivilegio" />
+        </EntityType>
+        <EntityType Name="programacion">
+          <Key>
+            <PropertyRef Name="idProgramacion" />
+          </Key>
+          <Property Name="idProgramacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaInicioInscripcion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinInscripcion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaEjecucion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFinalizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaInicioRecogida" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horaFinRecogida" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="idPaquete" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="paquete" Relationship="Self.FK_idPaquete" FromRole="programacion" ToRole="paquete" />
+          <NavigationProperty Name="reserva" Relationship="Self.FK_idProgramacion" FromRole="programacion" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProgramacion" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="fechaReserva" Type="DateTime" Precision="0" />
+          <Property Name="valorReserva" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="estadoReserva" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK_idCliente" FromRole="reserva" ToRole="cliente" />
+          <NavigationProperty Name="detalleReservaViajero" Relationship="Self.FK_idReserva" FromRole="reserva" ToRole="detalleReservaViajero" />
+          <NavigationProperty Name="pago" Relationship="Self.FK_reservation" FromRole="reserva" ToRole="pago" />
+          <NavigationProperty Name="programacion" Relationship="Self.FK_idProgramacion" FromRole="reserva" ToRole="programacion" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreRol" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoRol" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="rolPrivilegio" Relationship="Self.FK_idRol" FromRole="rol" ToRole="rolPrivilegio" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_idRolUsuario" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="rolPrivilegio">
+          <Key>
+            <PropertyRef Name="idRolPrivilegio" />
+          </Key>
+          <Property Name="idRolPrivilegio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="idPrivilegio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="privilegio" Relationship="Self.FK_idPrivilegio" FromRole="rolPrivilegio" ToRole="privilegio" />
+          <NavigationProperty Name="rol" Relationship="Self.FK_idRol" FromRole="rolPrivilegio" ToRole="rol" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="idServicio" />
+          </Key>
+          <Property Name="idServicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategoriaServicio" Type="Int32" Nullable="false" />
+          <Property Name="nombreServicio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valorServicio" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="estadoServicio" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="categoriaServicio" Relationship="Self.FK_categoryService" FromRole="servicio" ToRole="categoriaServicio" />
+          <NavigationProperty Name="detallePaqueteServicio" Relationship="Self.FK_idService" FromRole="servicio" ToRole="detallePaqueteServicio" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="tipoDocumento" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="identificacion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoUsuario" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK_idUsuario" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="rol" Relationship="Self.FK_idRolUsuario" FromRole="usuario" ToRole="rol" />
+        </EntityType>
+        <Association Name="FK_idActividadPaquete">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paquete" Type="Self.paquete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="idActividad" />
+            </Principal>
+            <Dependent Role="paquete">
+              <PropertyRef Name="idActividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_categoryService">
+          <End Role="categoriaServicio" Type="Self.categoriaServicio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servicio" Type="Self.servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoriaServicio">
+              <PropertyRef Name="idCategoriaServicio" />
+            </Principal>
+            <Dependent Role="servicio">
+              <PropertyRef Name="idCategoriaServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idCliente">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idClienteReservaViajero">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="detalleReservaViajero" Type="Self.detalleReservaViajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="detalleReservaViajero">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMunicipio">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idUsuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idDepartamento">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="municipio" Type="Self.municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="municipio">
+              <PropertyRef Name="idDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPais">
+          <End Role="pais" Type="Self.pais" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="departamento" Type="Self.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPackage">
+          <End Role="paquete" Type="Self.paquete" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detallePaqueteServicio" Type="Self.detallePaqueteServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idPaquete" />
+            </Principal>
+            <Dependent Role="detallePaqueteServicio">
+              <PropertyRef Name="idPaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idService">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detallePaqueteServicio" Type="Self.detallePaqueteServicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="idServicio" />
+            </Principal>
+            <Dependent Role="detallePaqueteServicio">
+              <PropertyRef Name="idServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idReserva">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="detalleReservaViajero" Type="Self.detalleReservaViajero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="detalleReservaViajero">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idMunicipioPaquete">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paquete" Type="Self.paquete" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="paquete">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reservation">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pago" Type="Self.pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="idReserva" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="idReserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPaquete">
+          <End Role="paquete" Type="Self.paquete" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="programacion" Type="Self.programacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idPaquete" />
+            </Principal>
+            <Dependent Role="programacion">
+              <PropertyRef Name="idPaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPermiso">
+          <End Role="permiso" Type="Self.permiso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="privilegio" Type="Self.privilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permiso">
+              <PropertyRef Name="idPermiso" />
+            </Principal>
+            <Dependent Role="privilegio">
+              <PropertyRef Name="idPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idPrivilegio">
+          <End Role="privilegio" Type="Self.privilegio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rolPrivilegio" Type="Self.rolPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="privilegio">
+              <PropertyRef Name="idPrivilegio" />
+            </Principal>
+            <Dependent Role="rolPrivilegio">
+              <PropertyRef Name="idPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idProgramacion">
+          <End Role="programacion" Type="Self.programacion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programacion">
+              <PropertyRef Name="idProgramacion" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="idProgramacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rolPrivilegio" Type="Self.rolPrivilegio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="rolPrivilegio">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idRolUsuario">
+          <End Role="rol" Type="Self.rol" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="idRol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RelationContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividad" EntityType="Self.actividad" />
+          <EntitySet Name="categoriaServicio" EntityType="Self.categoriaServicio" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="departamento" EntityType="Self.departamento" />
+          <EntitySet Name="detallePaqueteServicio" EntityType="Self.detallePaqueteServicio" />
+          <EntitySet Name="detalleReservaViajero" EntityType="Self.detalleReservaViajero" />
+          <EntitySet Name="municipio" EntityType="Self.municipio" />
+          <EntitySet Name="pago" EntityType="Self.pago" />
+          <EntitySet Name="pais" EntityType="Self.pais" />
+          <EntitySet Name="paquete" EntityType="Self.paquete" />
+          <EntitySet Name="permiso" EntityType="Self.permiso" />
+          <EntitySet Name="privilegio" EntityType="Self.privilegio" />
+          <EntitySet Name="programacion" EntityType="Self.programacion" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="rolPrivilegio" EntityType="Self.rolPrivilegio" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_idActividadPaquete" Association="Self.FK_idActividadPaquete">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="paquete" EntitySet="paquete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_categoryService" Association="Self.FK_categoryService">
+            <End Role="categoriaServicio" EntitySet="categoriaServicio" />
+            <End Role="servicio" EntitySet="servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idCliente" Association="Self.FK_idCliente">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idClienteReservaViajero" Association="Self.FK_idClienteReservaViajero">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="detalleReservaViajero" EntitySet="detalleReservaViajero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMunicipio" Association="Self.FK_idMunicipio">
+            <End Role="municipio" EntitySet="municipio" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idUsuario" Association="Self.FK_idUsuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cliente" EntitySet="cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idDepartamento" Association="Self.FK_idDepartamento">
+            <End Role="departamento" EntitySet="departamento" />
+            <End Role="municipio" EntitySet="municipio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPais" Association="Self.FK_idPais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="departamento" EntitySet="departamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPackage" Association="Self.FK_idPackage">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="detallePaqueteServicio" EntitySet="detallePaqueteServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idService" Association="Self.FK_idService">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="detallePaqueteServicio" EntitySet="detallePaqueteServicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idReserva" Association="Self.FK_idReserva">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="detalleReservaViajero" EntitySet="detalleReservaViajero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idMunicipioPaquete" Association="Self.FK_idMunicipioPaquete">
+            <End Role="municipio" EntitySet="municipio" />
+            <End Role="paquete" EntitySet="paquete" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reservation" Association="Self.FK_reservation">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPaquete" Association="Self.FK_idPaquete">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="programacion" EntitySet="programacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPermiso" Association="Self.FK_idPermiso">
+            <End Role="permiso" EntitySet="permiso" />
+            <End Role="privilegio" EntitySet="privilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idPrivilegio" Association="Self.FK_idPrivilegio">
+            <End Role="privilegio" EntitySet="privilegio" />
+            <End Role="rolPrivilegio" EntitySet="rolPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idProgramacion" Association="Self.FK_idProgramacion">
+            <End Role="programacion" EntitySet="programacion" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRol" Association="Self.FK_idRol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="rolPrivilegio" EntitySet="rolPrivilegio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idRolUsuario" Association="Self.FK_idRolUsuario">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hermesModelStoreContainer" CdmEntityContainer="RelationContext">
+          <EntitySetMapping Name="actividad">
+            <EntityTypeMapping TypeName="hermesModel.actividad">
+              <MappingFragment StoreEntitySet="actividad">
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="nombreActividad" ColumnName="nombreActividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoriaServicio">
+            <EntityTypeMapping TypeName="hermesModel.categoriaServicio">
+              <MappingFragment StoreEntitySet="categoriaServicio">
+                <ScalarProperty Name="idCategoriaServicio" ColumnName="idCategoriaServicio" />
+                <ScalarProperty Name="nombreCategoriaServicio" ColumnName="nombreCategoriaServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="hermesModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="numeroContacto" ColumnName="numeroContacto" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="tipoDeSangre" ColumnName="tipoDeSangre" />
+                <ScalarProperty Name="eps" ColumnName="eps" />
+                <ScalarProperty Name="estadoCliente" ColumnName="estadoCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamento">
+            <EntityTypeMapping TypeName="hermesModel.departamento">
+              <MappingFragment StoreEntitySet="departamento">
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+                <ScalarProperty Name="codigoDepartamento" ColumnName="codigoDepartamento" />
+                <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detallePaqueteServicio">
+            <EntityTypeMapping TypeName="hermesModel.detallePaqueteServicio">
+              <MappingFragment StoreEntitySet="detallePaqueteServicio">
+                <ScalarProperty Name="idDetallePaqueteServicio" ColumnName="idDetallePaqueteServicio" />
+                <ScalarProperty Name="idPaquete" ColumnName="idPaquete" />
+                <ScalarProperty Name="idServicio" ColumnName="idServicio" />
+                <ScalarProperty Name="cantidadServicioPaquete" ColumnName="cantidadServicioPaquete" />
+                <ScalarProperty Name="valorServicioPaquete" ColumnName="valorServicioPaquete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleReservaViajero">
+            <EntityTypeMapping TypeName="hermesModel.detalleReservaViajero">
+              <MappingFragment StoreEntitySet="detalleReservaViajero">
+                <ScalarProperty Name="idDetalleReservaViajero" ColumnName="idDetalleReservaViajero" />
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="municipio">
+            <EntityTypeMapping TypeName="hermesModel.municipio">
+              <MappingFragment StoreEntitySet="municipio">
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="codigoMunicipio" ColumnName="codigoMunicipio" />
+                <ScalarProperty Name="nombreMunicipio" ColumnName="nombreMunicipio" />
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago">
+            <EntityTypeMapping TypeName="hermesModel.pago">
+              <MappingFragment StoreEntitySet="pago">
+                <ScalarProperty Name="idPago" ColumnName="idPago" />
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="valorPago" ColumnName="valorPago" />
+                <ScalarProperty Name="comprobante" ColumnName="comprobante" />
+                <ScalarProperty Name="estadoPago" ColumnName="estadoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pais">
+            <EntityTypeMapping TypeName="hermesModel.pais">
+              <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="codigoPais" ColumnName="codigoPais" />
+                <ScalarProperty Name="nombrePais" ColumnName="nombrePais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paquete">
+            <EntityTypeMapping TypeName="hermesModel.paquete">
+              <MappingFragment StoreEntitySet="paquete">
+                <ScalarProperty Name="idPaquete" ColumnName="idPaquete" />
+                <ScalarProperty Name="nombrePaquete" ColumnName="nombrePaquete" />
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="idActividad" ColumnName="idActividad" />
+                <ScalarProperty Name="nivelActividad" ColumnName="nivelActividad" />
+                <ScalarProperty Name="inversionPaquete" ColumnName="inversionPaquete" />
+                <ScalarProperty Name="reservaPaquete" ColumnName="reservaPaquete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permiso">
+            <EntityTypeMapping TypeName="hermesModel.permiso">
+              <MappingFragment StoreEntitySet="permiso">
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+                <ScalarProperty Name="nombrePermiso" ColumnName="nombrePermiso" />
+                <ScalarProperty Name="estadoPermiso" ColumnName="estadoPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="privilegio">
+            <EntityTypeMapping TypeName="hermesModel.privilegio">
+              <MappingFragment StoreEntitySet="privilegio">
+                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+                <ScalarProperty Name="nombrePrivilegio" ColumnName="nombrePrivilegio" />
+                <ScalarProperty Name="idPermiso" ColumnName="idPermiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programacion">
+            <EntityTypeMapping TypeName="hermesModel.programacion">
+              <MappingFragment StoreEntitySet="programacion">
+                <ScalarProperty Name="idProgramacion" ColumnName="idProgramacion" />
+                <ScalarProperty Name="fechaInicioInscripcion" ColumnName="fechaInicioInscripcion" />
+                <ScalarProperty Name="fechaFinInscripcion" ColumnName="fechaFinInscripcion" />
+                <ScalarProperty Name="fechaEjecucion" ColumnName="fechaEjecucion" />
+                <ScalarProperty Name="fechaFinalizacion" ColumnName="fechaFinalizacion" />
+                <ScalarProperty Name="horaInicioRecogida" ColumnName="horaInicioRecogida" />
+                <ScalarProperty Name="horaFinRecogida" ColumnName="horaFinRecogida" />
+                <ScalarProperty Name="idPaquete" ColumnName="idPaquete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reserva">
+            <EntityTypeMapping TypeName="hermesModel.reserva">
+              <MappingFragment StoreEntitySet="reserva">
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
+                <ScalarProperty Name="idProgramacion" ColumnName="idProgramacion" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="fechaReserva" ColumnName="fechaReserva" />
+                <ScalarProperty Name="valorReserva" ColumnName="valorReserva" />
+                <ScalarProperty Name="estadoReserva" ColumnName="estadoReserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="hermesModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="nombreRol" ColumnName="nombreRol" />
+                <ScalarProperty Name="estadoRol" ColumnName="estadoRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rolPrivilegio">
+            <EntityTypeMapping TypeName="hermesModel.rolPrivilegio">
+              <MappingFragment StoreEntitySet="rolPrivilegio">
+                <ScalarProperty Name="idRolPrivilegio" ColumnName="idRolPrivilegio" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicio">
+            <EntityTypeMapping TypeName="hermesModel.servicio">
+              <MappingFragment StoreEntitySet="servicio">
+                <ScalarProperty Name="idServicio" ColumnName="idServicio" />
+                <ScalarProperty Name="idCategoriaServicio" ColumnName="idCategoriaServicio" />
+                <ScalarProperty Name="nombreServicio" ColumnName="nombreServicio" />
+                <ScalarProperty Name="valorServicio" ColumnName="valorServicio" />
+                <ScalarProperty Name="estadoServicio" ColumnName="estadoServicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="hermesModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contrasenha" ColumnName="contrasenha" />
+                <ScalarProperty Name="estadoUsuario" ColumnName="estadoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
